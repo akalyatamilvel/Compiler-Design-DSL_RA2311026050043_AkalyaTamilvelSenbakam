@@ -1,0 +1,76 @@
+DSL Compiler  –  source: test/test2.dsl
+
+┌─────────────────────────────────────────┐
+│  Phase 1 & 2 : Lexing / Parsing         │
+└─────────────────────────────────────────┘
+[Parser] AST constructed successfully
+
+┌─────────────────────────────────────────┐
+│  Phase 3 : Abstract Syntax Tree         │
+└─────────────────────────────────────────┘
+STMTLIST
+  ASSIGN
+    IDENT(a)
+    NUMBER(3)
+  STMTLIST
+    ASSIGN
+      IDENT(b)
+      NUMBER(4)
+    STMTLIST
+      ASSIGN
+        IDENT(c)
+        BINOP('+')
+          BINOP('*')
+            IDENT(a)
+            IDENT(a)
+          BINOP('*')
+            IDENT(b)
+            IDENT(b)
+      STMTLIST
+        ASSIGN
+          IDENT(d)
+          BINOP('-')
+            IDENT(c)
+            NUMBER(1)
+        STMTLIST
+          ASSIGN
+            IDENT(e)
+            BINOP('*')
+              BINOP('+')
+                IDENT(a)
+                IDENT(b)
+              NUMBER(2)
+          STMTLIST
+            ASSIGN
+              IDENT(f)
+              BINOP('/')
+                IDENT(e)
+                NUMBER(7)
+
+┌─────────────────────────────────────────┐
+│  Phase 4 : Semantic Analysis            │
+└─────────────────────────────────────────┘
+[Semantic] OK – no errors found
+
+┌─────────────────────────────────────────┐
+│  Phase 5 : Intermediate Code Generation │
+└─────────────────────────────────────────┘
+; ── Three-Address Code ───────────────────────
+begin:
+    a = 3
+    b = 4
+    t0 = a * a
+    t1 = b * b
+    t2 = t0 + t1
+    c = t2
+    t3 = c - 1
+    d = t3
+    t4 = a + b
+    t5 = t4 * 2
+    e = t5
+    t6 = e / 7
+    f = t6
+end:
+; ─────────────────────────────────────────────
+
+[Done] Compilation finished successfully.

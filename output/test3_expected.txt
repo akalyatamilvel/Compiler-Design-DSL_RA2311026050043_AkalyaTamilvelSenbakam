@@ -1,0 +1,28 @@
+DSL Compiler  –  source: test/test3_error.dsl
+
+┌─────────────────────────────────────────┐
+│  Phase 1 & 2 : Lexing / Parsing         │
+└─────────────────────────────────────────┘
+[Parser] AST constructed successfully
+
+┌─────────────────────────────────────────┐
+│  Phase 3 : Abstract Syntax Tree         │
+└─────────────────────────────────────────┘
+STMTLIST
+  ASSIGN
+    IDENT(a)
+    NUMBER(10)
+  STMTLIST
+    ASSIGN
+      IDENT(c)
+      BINOP('+')
+        IDENT(a)
+        IDENT(b)
+
+┌─────────────────────────────────────────┐
+│  Phase 4 : Semantic Analysis            │
+└─────────────────────────────────────────┘
+Semantic error: variable 'b' used before assignment
+[Semantic] 1 error(s) found
+
+(compilation aborted – code generation skipped)
