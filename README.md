@@ -261,25 +261,6 @@ Semantic error: variable 'b' used before assignment
 
 ---
 
-## 📸 Execution Screenshot
-
-> Screenshot showing successful compilation of `test1.dsl` through all 5 phases:
-
-![Execution Screenshot](docs/screenshot.png)
-
----
-
-## 📊 Marking Criteria
-
-| Criteria          | Marks | Evidence                                         |
-|-------------------|-------|--------------------------------------------------|
-| Functionality     | 2     | All 5 compiler phases working end-to-end         |
-| Implementation    | 1     | Clean modular C, Flex + Bison integration        |
-| Code Quality      | 1     | Comments, consistent naming, error handling      |
-| Documentation     | 1     | README, PDF report, proper folder structure      |
-| **Total**         | **5** |                                                  |
-
----
 
 ## 📄 Documentation
 
