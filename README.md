@@ -263,20 +263,20 @@ Semantic error: variable 'b' used before assignment
 
 ## 📸 Execution Screenshots
 
-### 🔧 Installation
-![Installation](c3.png)
+#### 🔧 Installation
+![Installation](output/c3.png)
 
-### 🌳 Test 1 — Lexing, Parsing & AST
-![Test1 AST](c6.png)
+#### 🌳 Test 1 — Lexing, Parsing & AST
+![Test1 AST](output/c6.png)
 
-### ⚙️ Test 1 — Semantic Analysis & TAC Output
-![Test1 TAC](c7.png)
+#### ⚙️ Test 1 — Semantic Analysis & TAC Output
+![Test1 TAC](output/c7.png)
 
-### 🔢 Test 2 — Complex Expressions
-![Test2](c8.png)
+#### 🔢 Test 2 — Complex Expressions
+![Test2](output/c8.png)
 
-### ❌ Test 3 — Semantic Error Detection
-![Error](c9.png)
+#### ❌ Test 3 — Semantic Error Detection
+![Error](output/c9.png)
 
 ---
 
