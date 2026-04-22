@@ -1,129 +1,173 @@
-# DSL Compiler — Built with C, Flex & Bison
+# 🔧 DSL Compiler — Compiler Design Project
 
-A minimal but fully functional compiler for a simple Domain-Specific Language (DSL).
-It walks through every classic compiler phase: **Lexing → Parsing → AST → Semantic Analysis → Code Generation**.
+<div align="center">
+
+![Language](https://img.shields.io/badge/Language-C-blue?style=for-the-badge&logo=c)
+![Lexer](https://img.shields.io/badge/Lexer-Flex-green?style=for-the-badge)
+![Parser](https://img.shields.io/badge/Parser-Bison-orange?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20Ubuntu-purple?style=for-the-badge&logo=ubuntu)
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=for-the-badge)
+
+**A fully functional compiler for a custom Domain-Specific Language (DSL)**  
+built using C, Flex (Lex), and Bison (YACC) — covering all five classic compiler phases.
+
+</div>
 
 ---
 
-## Project Structure
+## 👩‍💻 Student Details
+
+| Field            | Details                                        |
+|------------------|------------------------------------------------|
+| **Name**         | Akalya Tamilvel Senbakam                       |
+| **Register No.** | RA2311026050043                                |
+| **Subject**      | Compiler Design                                |
+| **Institution**  | SRM Institute of Science & Technology          |
+
+---
+
+## 📁 Project Structure
 
 ```
-dsl_compiler/
+Compiler-Design-DSL_RA2311026050043_AkalyaTamilvelSenbakam/
+│
 ├── src/
-│   ├── lexer.l        # Flex  – lexical analyser (tokeniser)
-│   ├── parser.y       # Bison – grammar + AST construction
-│   ├── ast.h / ast.c  # AST node types and helpers
-│   ├── semantic.h / semantic.c   # Semantic analysis (symbol table)
-│   ├── codegen.h / codegen.c     # Three-address intermediate code
-│   └── main.c         # Driver – wires all phases together
+│   ├── lexer.l          # Flex – Lexical Analyser
+│   ├── parser.y         # Bison – Parser & Grammar Rules
+│   ├── ast.h            # AST Node type definitions
+│   ├── ast.c            # AST construction & utilities
+│   ├── semantic.h       # Semantic analysis header
+│   ├── semantic.c       # Semantic analysis (symbol table)
+│   ├── codegen.h        # Code generation header
+│   ├── codegen.c        # Three-address intermediate code generator
+│   └── main.c           # Main driver – connects all phases
+│
 ├── test/
-│   ├── test1.dsl           # Basic arithmetic assignments
-│   ├── test2.dsl           # Longer expression chain
-│   └── test3_error.dsl     # Semantic error example
+│   ├── test1.dsl        # Basic arithmetic assignments
+│   ├── test2.dsl        # Complex expression chain
+│   └── test3_error.dsl  # Semantic error test case
+│
 ├── output/
-│   ├── test1_expected.txt  # Expected output for test1
-│   ├── test2_expected.txt  # Expected output for test2
-│   └── test3_expected.txt  # Expected output for test3
+│   ├── test1_expected.txt
+│   └── test2_expected.txt
+│
+├── docs/
+│   └── DSL_Compiler_Report.pdf
+│
 ├── Makefile
 └── README.md
 ```
 
 ---
 
-## The DSL Language
+## 📌 Project Description
 
-### Supported Syntax
+This project implements a **minimal but complete compiler** for a custom Domain-Specific Language (DSL). The DSL supports arithmetic expressions, variable assignments, and multi-statement programs.
 
-| Feature              | Example                    |
-|----------------------|----------------------------|
-| Integer literal      | `42`                       |
-| Variable assignment  | `x = 5;`                   |
-| Addition             | `z = x + y;`               |
-| Subtraction          | `z = x - y;`               |
-| Multiplication       | `z = x * y;`               |
-| Division             | `z = x / y;`               |
-| Parenthesised expr   | `z = (x + y) * 2;`         |
-| Unary minus          | `z = -x;`                  |
-| Single-line comment  | `# this is a comment`      |
-| Multiple statements  | any number of assignments  |
+### ✅ Supported DSL Features
 
-### Grammar (BNF)
+| Feature                   | Example               |
+|---------------------------|-----------------------|
+| Integer assignment        | `x = 5;`              |
+| Addition                  | `z = x + y;`          |
+| Subtraction               | `z = x - y;`          |
+| Multiplication            | `z = x * y;`          |
+| Division                  | `z = x / y;`          |
+| Parenthesised expression  | `z = (x + y) * 2;`    |
+| Unary minus               | `z = -x;`             |
+| Single-line comment       | `# this is a comment` |
+| Multiple statements       | Any number of lines   |
+
+---
+
+## ⚙️ Tools Used
+
+| Tool       | Version | Purpose                          |
+|------------|---------|----------------------------------|
+| **GCC**    | 11.4    | C compiler                       |
+| **Flex**   | 2.6.4   | Lexical analyser generator       |
+| **Bison**  | 3.8.2   | Parser generator (LALR grammar)  |
+| **Make**   | 4.3     | Build automation                 |
+| **Ubuntu** | 22.04   | Development & execution platform |
+
+---
+
+## 🏗️ Compiler Architecture
+
+The compiler follows the classic **5-phase pipeline**:
 
 ```
-program    ::= stmtlist
-stmtlist   ::= stmt | stmt stmtlist
-stmt       ::= IDENTIFIER '=' expr ';'
-expr       ::= expr '+' expr
-             | expr '-' expr
-             | expr '*' expr
-             | expr '/' expr
-             | '-' expr
-             | '(' expr ')'
-             | NUMBER
-             | IDENTIFIER
+Source Code (.dsl)
+        │
+        ▼
+┌─────────────────┐
+│  Phase 1 & 2    │  lexer.l + parser.y
+│  Lexing/Parsing │  Token stream → AST
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│    Phase 3      │  ast.c
+│  AST Building   │  Syntax tree construction
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│    Phase 4      │  semantic.c
+│ Semantic Check  │  Symbol table validation
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│    Phase 5      │  codegen.c
+│ Code Generation │  Three-Address Code (TAC)
+└─────────────────┘
 ```
 
 ---
 
-## Prerequisites
+## 🚀 Steps to Run
 
-You need three tools installed:
+### Prerequisites
 
 ```bash
-# Debian / Ubuntu
-sudo apt-get install gcc flex bison
-
-# macOS (with Homebrew)
-brew install gcc flex bison
+sudo apt-get update
+sudo apt-get install gcc flex bison make -y
 ```
 
-Verify versions:
+### Build
 
 ```bash
-gcc   --version
-flex  --version
-bison --version
-```
-
----
-
-## Build
-
-```bash
-# From the project root
 make all
 ```
 
-This runs three steps automatically:
-
-1. **Bison** reads `src/parser.y` → generates `build/parser.tab.c` and `build/parser.tab.h`
-2. **Flex** reads `src/lexer.l`  → generates `build/lex.yy.c`
-3. **GCC** compiles all `.c` files together → produces `build/dslc`
-
----
-
-## Run
+### Run
 
 ```bash
-# Basic usage
-./build/dslc <source.dsl>
+# Run test 1 – basic arithmetic
+./build/dslc test/test1.dsl
 
-# Also write the three-address code to a file
-./build/dslc <source.dsl> <output.tac>
+# Run test 2 – complex expressions
+./build/dslc test/test2.dsl
+
+# Run test 3 – semantic error detection
+./build/dslc test/test3_error.dsl
+
+# Save output to a file
+./build/dslc test/test1.dsl output/test1.tac
+
+# Run all tests at once
+make test
+
+# Clean build files
+make clean
 ```
 
 ---
 
-## Test
+## 📥 Sample Input & Output
 
-```bash
-make test       # runs all three tests
-make test1      # test/test1.dsl  → output/test1.tac
-make test2      # test/test2.dsl  → output/test2.tac
-make test3      # test/test3_error.dsl  (expects semantic error)
-```
-
-### test1.dsl
+### Input — `test/test1.dsl`
 
 ```
 x = 5;
@@ -132,9 +176,49 @@ z = x + y;
 result = z * 2;
 ```
 
-**Expected three-address output:**
+### Output
 
 ```
+DSL Compiler  -  source: test/test1.dsl
+
++------------------------------------------+
+|  Phase 1 & 2 : Lexing / Parsing          |
++------------------------------------------+
+[Parser] AST constructed successfully
+
++------------------------------------------+
+|  Phase 3 : Abstract Syntax Tree          |
++------------------------------------------+
+STMTLIST
+  ASSIGN
+    IDENT(x)
+    NUMBER(5)
+  STMTLIST
+    ASSIGN
+      IDENT(y)
+      NUMBER(10)
+    STMTLIST
+      ASSIGN
+        IDENT(z)
+        BINOP('+')
+          IDENT(x)
+          IDENT(y)
+      STMTLIST
+        ASSIGN
+          IDENT(result)
+          BINOP('*')
+            IDENT(z)
+            NUMBER(2)
+
++------------------------------------------+
+|  Phase 4 : Semantic Analysis             |
++------------------------------------------+
+[Semantic] OK - no errors found
+
++------------------------------------------+
+|  Phase 5 : Intermediate Code Generation  |
++------------------------------------------+
+; -- Three-Address Code ----------------------
 begin:
     x = 5
     y = 10
@@ -143,48 +227,20 @@ begin:
     t1 = z * 2
     result = t1
 end:
+; --------------------------------------------
+
+[Done] Compilation finished successfully.
 ```
 
-### test2.dsl
+### Semantic Error Detection — `test/test3_error.dsl`
 
-```
-a = 3;
-b = 4;
-c = a * a + b * b;
-d = c - 1;
-e = (a + b) * 2;
-f = e / 7;
-```
-
-**Expected three-address output:**
-
-```
-begin:
-    a = 3
-    b = 4
-    t0 = a * a
-    t1 = b * b
-    t2 = t0 + t1
-    c = t2
-    t3 = c - 1
-    d = t3
-    t4 = a + b
-    t5 = t4 * 2
-    e = t5
-    t6 = e / 7
-    f = t6
-end:
-```
-
-### test3_error.dsl (semantic error)
-
+**Input:**
 ```
 a = 10;
 c = a + b;   # ERROR: b is not defined
 ```
 
-**Expected error:**
-
+**Output:**
 ```
 Semantic error: variable 'b' used before assignment
 [Semantic] 1 error(s) found
@@ -192,90 +248,51 @@ Semantic error: variable 'b' used before assignment
 
 ---
 
-## Compiler Phases Explained
+## 📂 Module Descriptions
 
-### Phase 1 — Lexical Analysis (`lexer.l`)
-
-Flex scans the raw source text and breaks it into tokens:
-
-| Token        | Pattern                        |
-|--------------|-------------------------------|
-| `NUMBER`     | `[0-9]+`                      |
-| `IDENTIFIER` | `[a-zA-Z_][a-zA-Z0-9_]*`     |
-| `ASSIGN`     | `=`                           |
-| `PLUS`       | `+`                           |
-| `MINUS`      | `-`                           |
-| `TIMES`      | `*`                           |
-| `DIVIDE`     | `/`                           |
-| `SEMI`       | `;`                           |
-| `LPAREN`     | `(`                           |
-| `RPAREN`     | `)`                           |
-
-Whitespace and `#`-comments are silently discarded.
-
-### Phase 2 — Parsing (`parser.y`)
-
-Bison applies the grammar rules to the token stream and calls the AST
-constructor functions to build a tree. Operator precedence (`* /` before `+ -`)
-is declared with `%left` directives so the grammar stays unambiguous.
-
-### Phase 3 — AST Construction (`ast.c`)
-
-Five node kinds:
-
-| Kind           | Meaning                            |
-|----------------|------------------------------------|
-| `NODE_NUMBER`  | Integer constant                   |
-| `NODE_IDENT`   | Variable reference                 |
-| `NODE_ASSIGN`  | `left = right`                     |
-| `NODE_BINOP`   | `left op right`                    |
-| `NODE_STMTLIST`| Ordered list of statements         |
-
-### Phase 4 — Semantic Analysis (`semantic.c`)
-
-A lightweight pass over the AST with a hash-map symbol table:
-
-* For each **assignment** `x = expr`, the RHS expression is checked *first*,
-  then `x` is added to the symbol table.
-* For every **identifier** used in an expression, the table is queried.
-  If the variable is not found an error is reported.
-* Compilation is aborted if any semantic errors are found.
-
-### Phase 5 — Intermediate Code Generation (`codegen.c`)
-
-A simple recursive walk that emits **three-address code (TAC)**:
-
-```
-t0 = x + y      ← binary operation into a fresh temporary
-z  = t0         ← assignment
-```
-
-Temporaries are numbered `t0, t1, t2, …`. This TAC is the standard
-input format for further back-end optimisation passes or machine-code
-generation in a real compiler.
+| Module        | Description |
+|---------------|-------------|
+| `lexer.l`     | Flex rules that tokenise the source into NUMBER, IDENTIFIER, operators, and punctuation. Comments and whitespace are discarded. |
+| `parser.y`    | Bison LALR grammar. Operator precedence declared with `%left`. Each grammar action calls an AST constructor. |
+| `ast.c`       | Defines 5 node types. Provides `make_*` constructors, `print_ast()` for debug, and `free_ast()` for cleanup. |
+| `semantic.c`  | Single-pass AST walk with a hash-map symbol table. Reports use-before-assignment errors and aborts compilation on failure. |
+| `codegen.c`   | Post-order recursive walk that emits three-address code with numbered temporaries `t0, t1, t2...` |
+| `main.c`      | Wires all phases together. Prints phase banners. Accepts an optional output file argument. |
 
 ---
 
-## Clean
+## 📸 Execution Screenshot
 
-```bash
-make clean
-```
+> Screenshot showing successful compilation of `test1.dsl` through all 5 phases:
 
-Removes `build/` and any generated `.tac` files in `output/`.
+![Execution Screenshot](docs/screenshot.png)
 
 ---
 
-## Extending the Compiler
+## 📊 Marking Criteria
 
-Here are straightforward next steps if you want to take it further:
+| Criteria          | Marks | Evidence                                         |
+|-------------------|-------|--------------------------------------------------|
+| Functionality     | 2     | All 5 compiler phases working end-to-end         |
+| Implementation    | 1     | Clean modular C, Flex + Bison integration        |
+| Code Quality      | 1     | Comments, consistent naming, error handling      |
+| Documentation     | 1     | README, PDF report, proper folder structure      |
+| **Total**         | **5** |                                                  |
 
-* **`print` statement** — add a `PRINT` token and grammar rule, emit a
-  TAC `print x` instruction.
-* **`if` / `while`** — add control-flow nodes to the AST and emit
-  conditional jumps in the TAC (e.g., `ifFalse t0 goto L1`).
-* **Type system** — add float literals and track types in the symbol
-  table; emit type-conversion TAC instructions.
-* **Register allocation** — map TAC temporaries to real CPU registers.
-* **x86-64 / ARM code generation** — translate TAC instructions to
-  assembly, assemble with `nasm` or `as`.
+---
+
+## 📄 Documentation
+
+Full project report is available in [`docs/DSL_Compiler_Report.pdf`](docs/DSL_Compiler_Report.pdf)
+
+It covers:
+- Compiler architecture diagram
+- Detailed module explanations
+- Sample input/output
+- Tools and setup guide
+
+---
+
+<div align="center">
+Made with ❤️ by <b>Akalya Tamilvel Senbakam</b> &nbsp;|&nbsp; RA2311026050043
+</div>
