@@ -276,7 +276,7 @@ Semantic error: variable 'b' used before assignment
 ![Test2](output/c8.png)
 
 #### ❌ Test 3 — Semantic Error Detection
-![Error](output/c9.png)
+![Error](output/c10.png)
 
 ---
 
