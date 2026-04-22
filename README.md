@@ -17,12 +17,12 @@ built using C, Flex (Lex), and Bison (YACC) — covering all five classic compil
 
 ## 👩‍💻 Student Details
 
-| Field            | Details                                        |
-|------------------|------------------------------------------------|
-| **Name**         | Akalya Tamilvel Senbakam                       |
-| **Register No.** | RA2311026050043                                |
-| **Subject**      | Compiler Design                                |
-| **Institution**  | SRM Institute of Science & Technology          |
+| Field            | Details                                                  |
+|------------------|----------------------------------------------------------|
+| **Name**         | Akalya Tamilvel Senbakam                                 |
+| **Register No.** | RA2311026050043                                          |
+| **Subject**      | Compiler Design                                          |
+| **Institution**  | SRM Institute of Science & Technology, Tiruchirappalli   |
 
 ---
 
