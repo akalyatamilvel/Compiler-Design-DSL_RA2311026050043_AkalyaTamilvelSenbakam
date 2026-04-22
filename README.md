@@ -1,4 +1,4 @@
-# 🔧 DSL Compiler — Compiler Design Project
+#  DSL Compiler — Compiler Design Project
 
 <div align="center">
 
@@ -266,16 +266,16 @@ Semantic error: variable 'b' used before assignment
 #### 🔧 Installation
 ![Installation](output/c3.png)
 
-#### 🌳 Test 1 — Lexing, Parsing & AST
+#### Test 1 — Lexing, Parsing & AST
 ![Test1 AST](output/c6.png)
 
-#### ⚙️ Test 1 — Semantic Analysis & TAC Output
+#### Test 1 — Semantic Analysis & TAC Output
 ![Test1 TAC](output/c7.png)
 
-#### 🔢 Test 2 — Complex Expressions
+#### Test 2 — Complex Expressions
 ![Test2](output/c8.png)
 
-#### ❌ Test 3 — Semantic Error Detection
+#### Test 3 — Semantic Error Detection
 ![Error](output/c10.png)
 
 ---
